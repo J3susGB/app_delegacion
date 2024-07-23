@@ -1,0 +1,223 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.5rem;
+    // margin: 0 auto;
+    
+    @include m.tablet {
+        
+    }
+    @include m.xl_desktop {
+        font-size: 1.3rem;
+    }
+
+    &__thead {
+        background-color: darken(v.$verde2, 20%);
+        color: lighten(grey, 20);
+        border-radius: 1rem;
+
+        // @include m.max-desktop {
+        //     visibility: hidden;
+        // }
+    }
+
+    &__th {
+        padding: 1.5rem 1rem;
+        text-align: left;
+        @include m.max-desktop {
+            margin-top: 0;
+        }
+        @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__tr {
+        padding: 2rem auto;
+        &:nth-child(even) {
+            background-color: v.$gris-oscuro;
+        } 
+        @include m.tablet {
+            font-size: 1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__td {
+        padding: 1.5rem 1rem;
+        @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+
+        &--acciones {
+            @extend .table__td;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 1rem;
+  
+            @include m.telefono {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            
+        }
+    }
+
+    &__accion {
+        all: unset;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: v.$bold;
+        @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+
+        &--editar {
+            color: v.$amarillo;
+            transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            margin-top: 1px;
+            &:hover {
+                color: darken(v.$amarillo, 10);
+                // border-bottom: 1px solid darken(v.$secundario, 10);
+                transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            }
+        }
+
+        &--eliminar {
+            color: v.$rojo;
+            transition: 3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            &:hover {
+                color: darken(v.$rojo, 5);
+                // border-bottom: 1px solid darken(v.$rojo, 5);
+                transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    
+    }
+}
+
+.table-lista {
+    @extend .table;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & img {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.3em 0.3em, rgba(0, 0, 0, 0.25) 0px 0.3em 0.8em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;        
+        margin-bottom: 2rem;
+    }
+
+    &__thead {
+        background-color: v.$primario;
+        color: v.$blanco;
+        padding: 1rem;
+        text-align: left;
+        visibility: hidden;
+
+
+        @include m.max-desktop {
+            visibility: hidden;
+        }
+    }
+    &__th {
+        padding: 1rem;
+        text-align: left;
+        @include m.max-desktop {
+            margin-top: 0;
+        }
+    }
+
+    &__dato{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    &__tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 2rem;
+        flex: 1;
+        border-bottom: 1px solid darken(v.$gris-oscuro, 15);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        // &:nth-child(even){
+        //     background-color: darken(v.$gris-claro, 5);
+        // }
+    }
+    
+    &__td {
+        display: block;
+        text-align: left;
+        // width: 30%;
+        padding: 0.5rem 0;
+        position: relative;
+
+        // &::before {
+        //     content: attr(data-label);
+        //     display: block;
+        //     font-weight: bold;
+        //     margin-bottom: 0.5rem;
+        //     color: v.$principal;
+        // }
+    }
+
+    &__select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        margin: 2rem auto;
+        
+        
+        & .btn-asiste {
+            background-color: lighten(v.$amarillo, 35);
+            width: 6rem;
+            border-radius: 50%;
+            border: inset;
+            padding: 1.2rem 0;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.3em 0.3em, rgba(0, 0, 0, 0.25) 0px 0.3em 0.8em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;        
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        & .selected {
+            background-color:lighten(v.$amarillo, 10);
+            color: black;
+            border: ridge; 
+            transform: scale(1.12);
+            
+        }
+    }
+}
